@@ -10,7 +10,10 @@ load_dotenv(
 
 
 def get_gemini_repsonse(input):
-  model = genai.GenerativeModel('gemini-2.0-flash')
+  generate_content_config = types.GenerateContentConfig(
+        response_mime_type="application/json",
+  )
+  model = genai.GenerativeModel('gemini-2.0-flash', config=generate_content_config)
   response = model.generate_content(input)
   return response.text
 
