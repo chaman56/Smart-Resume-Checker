@@ -10,10 +10,7 @@ load_dotenv(
 
 
 def get_gemini_repsonse(input):
-  generate_content_config = types.GenerateContentConfig(
-        response_mime_type="application/json",
-  )
-  model = genai.GenerativeModel('gemini-2.0-flash', config=generate_content_config)
+  model = genai.GenerativeModel('gemini-2.0-flash')
   response = model.generate_content(input)
   return response.text
 
@@ -40,8 +37,9 @@ input_prompt = """
   resume:{text}
   description:{jd}
 
-  I want the response in one single string having the structure
+  I want the response in just one single string having below structure.
   {"Job Match":"%","MissingKeywords:[]","Profile Summary":""}
+  Don't output anything else except for the above format, no extra text, no explanations, nothing.
   """
 
 ## streamlit app
